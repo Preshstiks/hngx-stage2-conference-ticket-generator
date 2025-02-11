@@ -1,3 +1,4 @@
+import Button from "./components/Button";
 import PageCard from "./components/PageCard";
 import TicketTypeCard from "./components/TicketTypeCard";
 
@@ -36,6 +37,10 @@ const StepOne = () => {
             Number of Tickets
           </label>
         </div>
+      </div>
+      <div className="flex gap-[12px] ">
+        <Button outline>Cancel</Button>
+        <Button solid>Next</Button>
       </div>
     </PageCard>
   );

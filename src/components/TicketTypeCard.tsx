@@ -19,16 +19,16 @@ const TicketTypeCard: React.FC<TicketTypeCardProps> = ({ cards }) => {
           onClick={() => setActiveCard(index)}
           className={`${
             activeCard === index
-              ? "bg-secondary border-[#197686]"
+              ? "bg-tertiary border-[#2BA4B9]"
               : " border-[#07373F]"
-          } w-full flex h-[65px] p-[8px] cursor-pointer rounded-[12px] items-center justify-between border`}
+          } w-full flex h-[110px] p-[12px] cursor-pointer rounded-[12px] items-center justify-between border`}
         >
           <div>
+            <div className=" h-[38px] rounded-[8px] font-robotoSemiBold text-[20px]">
+              {card.amount}
+            </div>
             <h1 className="uppercase  font-robotoRegular">{card.title}</h1>
             <h1 className="font-robotoRegular">{`${card.numberLeft} left!`}</h1>
-          </div>
-          <div className="max-w-[80px] w-full h-[38px] flex justify-end items-center rounded-[8px] bg-tertiary font-robotoSemiBold border border-[#2BA4B9] p-[8px] text-[20px]">
-            {card.amount}
           </div>
         </div>
       ))}

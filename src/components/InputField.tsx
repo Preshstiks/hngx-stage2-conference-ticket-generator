@@ -1,5 +1,6 @@
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { ErrorMessage, Field, useFormikContext } from "formik";
+import { useEffect, useState } from "react";
 
 interface InputFieldProps {
   label: string;
@@ -21,6 +22,15 @@ const InputField = ({
   maxLength,
 }: InputFieldProps) => {
   const { setFieldValue } = useFormikContext();
+  const storedValue = sessionStorage.getItem(name) || "";
+  const initialRemaining = maxLength ? maxLength - storedValue.length : 0;
+  const [remainingLetters, setRemainingLetters] = useState(initialRemaining);
+
+  useEffect(() => {
+    if (storedValue) {
+      setFieldValue(name, storedValue);
+    }
+  }, [name, setFieldValue, storedValue]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -28,7 +38,11 @@ const InputField = ({
     const { name, value } = e.target;
     sessionStorage.setItem(name, value);
     setFieldValue(name, value);
+    if (maxLength) {
+      setRemainingLetters(maxLength - value.length);
+    }
   };
+
   return (
     <div>
       <label
@@ -38,7 +52,7 @@ const InputField = ({
         {label}
         {required && <span className="text-red-500 ml-2">*</span>}
         {maxLength && (
-          <span className="text-white text-[12px] font-robotoRegular ml-2">{`(max ${maxLength} words)`}</span>
+          <span className="text-white text-[12px] font-robotoRegular ml-2">{`(max ${maxLength} letters)`}</span>
         )}
       </label>
       <div className="relative">
@@ -58,6 +72,11 @@ const InputField = ({
           <EnvelopeIcon className="h-5 w-5 text-white absolute left-3 top-1/2 -translate-y-1/2" />
         )}
       </div>
+      {maxLength && (
+        <p className="text-white text-[12px]">
+          Remaining letters: {remainingLetters}
+        </p>
+      )}
       <ErrorMessage
         name={name}
         component="div"

@@ -20,7 +20,7 @@ export const TicketTypeCard: React.FC<TicketTypeCardProps> = ({
         <div
           key={index}
           onClick={() => setFieldValue("selectedTicket", card.title)}
-          className={`w-full flex h-[110px] p-[12px] cursor-pointer rounded-[12px] items-center justify-between 
+          className={`w-full flex h-[110px] hover:bg-active/20 p-[12px] cursor-pointer rounded-[12px] items-center justify-between 
             ${
               selectedTicket === card.title
                 ? "bg-tertiary border border-[#2BA4B9]"

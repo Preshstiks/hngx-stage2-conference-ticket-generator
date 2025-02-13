@@ -21,9 +21,9 @@ const Button: React.FC<ButtonProps> = ({
       id={id}
       className={`${
         outline
-          ? " text-[#24A0B5] border border-[#24A0B5]"
+          ? " text-[#24A0B5] hover:bg-active/20 border border-[#24A0B5]"
           : solid
-          ? "bg-[#24A0B5] text-white"
+          ? "bg-[#24A0B5] hover:bg-[#24A0B5]/80 text-white"
           : null
       } py-2.5 rounded-[8px] cursor-pointer font-jejuRegular w-full text-[16px]`}
     >

@@ -2,7 +2,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import Button from "./components/Button";
 import PageCard from "./components/PageCard";
 import { TicketTypeCard } from "./components/TicketTypeCard";
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { Formik, FormikValues } from "formik";
 import { Form } from "formik";
 
@@ -24,7 +24,19 @@ const StepOne = ({ step, setStep }: StepOneProps) => {
   const handleSubmit = (values: FormikValues) => {
     localStorage.setItem("ticketType", values.selectedTicket);
     localStorage.setItem("ticketNumber", values.tickets);
+    setStep(2);
   };
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("submitBtn")?.click(); // Trigger button click
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
   return (
     <div className="pb-[60px]">
       <PageCard title="Ticket Selection" step={step}>
@@ -50,13 +62,13 @@ const StepOne = ({ step, setStep }: StepOneProps) => {
           initialValues={{
             selectedTicket:
               sessionStorage.getItem("ticketType") || cardDetails[0].title,
-            tickets: sessionStorage.getItem("ticketNumber") || "",
+            tickets: sessionStorage.getItem("ticketNumber") || 1,
           }}
           validateOnBlur={false}
           validateOnChange={false}
           onSubmit={handleSubmit}
         >
-          {({ values, setFieldValue, submitForm }) => (
+          {({ values, setFieldValue }) => (
             <Form>
               <div>
                 <h1 className="text-light pb-3 font-robotoRegular">
@@ -114,14 +126,10 @@ const StepOne = ({ step, setStep }: StepOneProps) => {
               </div>
 
               <div className="flex sm:flex-row flex-col-reverse gap-[12px]">
-                <Button outline>Cancel</Button>
-                <Button
-                  solid
-                  onClick={() => {
-                    submitForm();
-                    setStep(2);
-                  }}
-                >
+                <Button outline type="button">
+                  Cancel
+                </Button>
+                <Button solid type="submit" id="submitBtn">
                   Next
                 </Button>
               </div>

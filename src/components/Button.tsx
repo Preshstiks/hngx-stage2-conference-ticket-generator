@@ -4,6 +4,7 @@ interface ButtonProps {
   solid?: boolean;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
+  id?: string;
 }
 const Button: React.FC<ButtonProps> = ({
   children,
@@ -11,11 +12,13 @@ const Button: React.FC<ButtonProps> = ({
   outline,
   solid,
   type,
+  id,
 }) => {
   return (
     <button
       type={type}
       onClick={onClick}
+      id={id}
       className={`${
         outline
           ? " text-[#24A0B5] border border-[#24A0B5]"

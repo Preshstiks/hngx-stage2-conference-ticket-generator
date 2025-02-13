@@ -27,7 +27,6 @@ const StepTwo = ({ step, setStep }: StepTwoProps) => {
   };
   const [initialValues, setInitialValues] = useState(getInitialValues());
   useEffect(() => {
-    // Load initial values on component mount
     setInitialValues(getInitialValues());
 
     const storedImage = sessionStorage.getItem("image");
@@ -76,6 +75,17 @@ const StepTwo = ({ step, setStep }: StepTwoProps) => {
     localStorage.setItem("image", values.image);
     setStep(3);
   };
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("submitBtn")?.click(); // Trigger button click
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
   return (
     <div className="pb-[60px]">
       <PageCard title="Attendee Details" step={step}>
@@ -154,7 +164,7 @@ const StepTwo = ({ step, setStep }: StepTwoProps) => {
                   name="request"
                   type="textarea"
                   rows={3}
-                  maxLength={100}
+                  maxLength={120}
                   required
                 />
               </div>
@@ -163,7 +173,7 @@ const StepTwo = ({ step, setStep }: StepTwoProps) => {
                 <Button outline onClick={() => setStep(1)}>
                   Back
                 </Button>
-                <Button solid type="submit" onClick={submitForm}>
+                <Button solid type="submit" id="submitBtn" onClick={submitForm}>
                   Get My Free Ticket
                 </Button>
               </div>

@@ -36,6 +36,9 @@ const InputField = ({
       >
         {label}
         {required && <span className="text-red-500 ml-2">*</span>}
+        {maxLength && (
+          <span className="text-white text-[12px] font-robotoRegular ml-2">{`(max ${maxLength} words)`}</span>
+        )}
       </label>
       <Field
         type={type !== "textarea" ? type : undefined}

@@ -23,7 +23,7 @@ const PageCard: React.FC<PageCardProps> = ({
           <div className="w-[232px] h-full bg-blue rounded-[5px]"></div>
         </div>
         {!isBooked ? (
-          <div className="border border-tertiary rounded-[32px] p-[24px] mt-[24px] bg-[#08252B]">
+          <div className="sm:border border-tertiary rounded-[32px] sm:p-[24px] mt-[24px] sm:bg-[#08252B]">
             {children}
           </div>
         ) : (

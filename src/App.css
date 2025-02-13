@@ -16,6 +16,10 @@
   font-family: RobotoSemiBold;
   src: url("./assets/fonts/Roboto-SemiBold.ttf");
 }
+@font-face {
+  font-family: RobotoBold;
+  src: url("./assets/fonts/Roboto-Bold.ttf");
+}
 @theme {
   --color-light: #fafafa;
   --color-white: #ffffff;
@@ -29,19 +33,58 @@
   --font-roadrageRegular: RoadRageRegular;
   --font-robotoRegular: RobotoRegular;
   --font-robotoSemiBold: RobotoSemiBold;
+  --font-robotoBold: RobotoBold;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #052228 inset !important;
+  -webkit-text-fill-color: white !important;
+}
+:root {
+  --color-dark: rgb(64, 64, 64);
 }
 
+@supports (color: oklch(0% 0 0)) {
+  :root {
+    --color-dark: oklch(37.15% 0 0);
+  }
+}
 .bg-radial {
   background: radial-gradient(
-    circle at 50% 350%,
-    #24a0b5 20%,
-    rgba(2, 25, 29, 1) 80%
-  );
+      52.52% 32.71% at 50% 97.66%,
+      rgba(36, 160, 181, 0.2) 0%,
+      rgba(36, 160, 181, 0) 100%
+    ),
+    #02191d;
 }
 .bg-radialCard {
   background: radial-gradient(
-    circle at 20% -300%,
-    #24a0b5 20%,
-    rgba(2, 25, 29, 1) 80%
-  );
+      103.64% 57.39% at 14.02% 32.06%,
+      rgba(36, 160, 181, 0.2) 0%,
+      rgba(36, 160, 181, 0) 100%
+    )
+    rgba(10, 12, 17, 0.1);
+  backdrop-filter: blur(7px);
+}
+
+.bg-ticketgradient {
+  background: linear-gradient(0deg, #072c31, #072c31),
+    radial-gradient(
+      50% 13.92% at 50% 0%,
+      rgba(36, 160, 181, 0.5) 0%,
+      rgba(36, 160, 181, 0) 100%
+    ),
+    radial-gradient(
+      50% 36.17% at 50% 103.25%,
+      rgba(36, 160, 181, 0.5) 0%,
+      rgba(36, 160, 181, 0) 100%
+    );
+}
+.ticket-container {
+  background: rgba(3, 30, 33, 0.1);
+  border: 1px solid #24a0b5;
+  backdrop-filter: blur(2px);
+  border-radius: 16px;
 }

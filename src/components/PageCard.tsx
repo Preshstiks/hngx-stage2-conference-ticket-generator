@@ -11,10 +11,12 @@ const PageCard: React.FC<PageCardProps> = ({
   children,
 }) => {
   return (
-    <div className="max-w-[700px] w-full bg-[#041E23] mx-auto mt-[50px] p-[48px] border rounded-[40px] border-tertiary">
+    <div className="max-w-[700px] w-full bg-[#041E23] mx-auto mt-[50px] sm:p-[48px] p-[24px] border rounded-[40px] border-tertiary">
       <div>
         <div className="flex items-center justify-between">
-          <h1 className="text-[32px] font-jejuRegular text-white">{title}</h1>
+          <h1 className="sm:text-[32px] text-[24px] font-jejuRegular text-white">
+            {title}
+          </h1>
           <h1 className="text-white font-robotoRegular">{`Step ${step}/3`}</h1>
         </div>
         <div className="w-full h-[4px] rounded-[5px] bg-tertiary mt-[8px]">
@@ -25,7 +27,7 @@ const PageCard: React.FC<PageCardProps> = ({
             {children}
           </div>
         ) : (
-          <h1>Hi</h1>
+          <>{children}</>
         )}
       </div>
     </div>

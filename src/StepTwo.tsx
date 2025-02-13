@@ -64,7 +64,7 @@ const StepTwo = ({ step, setStep }: StepTwoProps) => {
   const formSchema = Yup.object().shape({
     image: Yup.string().required("Upload your profile photo"),
     name: Yup.string().required("Type your name"),
-    email: Yup.string().required("Type your email"),
+    email: Yup.string().required("Type your email").email("Invalid email"),
     request: Yup.string().required("Type your request"),
   });
   const handleSubmit = (values: FormikValues) => {
